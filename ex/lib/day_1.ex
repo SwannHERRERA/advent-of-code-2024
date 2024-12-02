@@ -13,6 +13,7 @@ defmodule Aoc.Days.One do
     IO.puts(candidate)
   end
 
+  @spec part_1(String.t()) :: integer
   def part_1(input) do
     break_text_into_pairs(input)
     |> sort_columns()
@@ -20,6 +21,7 @@ defmodule Aoc.Days.One do
     |> Enum.sum()
   end
 
+  @spec part_2(String.t()) :: integer
   def part_2(input) do
     {first_column, second_column} = break_text_into_pairs(input) |> Enum.unzip()
     frequencies = Enum.frequencies(second_column)
