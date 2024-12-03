@@ -30,7 +30,7 @@ defmodule Aoc.Days.Two do
   def part_2(input) do
     input
     |> parse_input()
-    |> Enum.count(&safe_with_dampener?/1)
+    |> Enum.count(&safe_with_skip?/1)
   end
 
   @spec parse_input(String.t()) :: [[integer()]]
@@ -51,8 +51,8 @@ defmodule Aoc.Days.Two do
     end)
   end
 
-  @spec safe_with_dampener?([integer()]) :: boolean()
-  defp safe_with_dampener?(report) do
+  @spec safe_with_skip?([integer()]) :: boolean()
+  defp safe_with_skip?(report) do
     report
     |> Enum.with_index()
     |> Enum.any?(fn {_, skip_index} -> 
