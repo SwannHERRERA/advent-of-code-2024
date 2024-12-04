@@ -30,14 +30,13 @@ defmodule Aoc.Days.Three do
 
   @spec part_2(String.t()) :: integer()
   def part_2(input) do
-    {enabled, results} = Enum.reduce(get_instructions(input), {true, []}, &process_instruction/2)
+    {_enabled, results} = Enum.reduce(get_instructions(input), {true, []}, &process_instruction/2)
     Enum.reduce(results, 0, fn {num1, num2}, acc -> acc + num1 * num2 end)
   end
 
   defp get_instructions(input) do
     Regex.scan(~r/(?:do\(\)|don't\(\)|mul\(\d+,\d+\))/, input)
     |> List.flatten()
-    |> IO.inspect()
   end
 
   defp process_instruction(instruction, {enabled, results}) do

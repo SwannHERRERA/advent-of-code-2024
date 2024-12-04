@@ -66,12 +66,12 @@ defmodule Aoc.Days.Two do
 
   # --- Optimised version ---
 
-  defp check_from_reference_ascending(numbers, skips_left) when skips_left >= 0 do
+  def check_from_reference_ascending(numbers, skips_left) when skips_left >= 0 do
     IO.inspect(numbers, label: "ascending with skips (#{skips_left} skips left)", charlists: :as_lists)
     case numbers do
       [a, b, c | rest] ->
         cond do
-        same_direction?(a, b, c) and valid_difference?(a,b) and valid_difference(b,c) ->
+        same_direction?(a, b, c) and valid_difference?(a,b) and valid_difference?(b,c) ->
             check_from_reference_ascending([b, c | rest], skips_left)
 
           skips_left > 0 ->
@@ -83,7 +83,7 @@ defmodule Aoc.Days.Two do
     end
   end
 
-  defp check_from_reference_descending(numbers, skips_left) when skips_left >= 0 do
+  def check_from_reference_descending(numbers, skips_left) when skips_left >= 0 do
     case numbers do
       [a, b, c | rest] ->
         cond do
@@ -100,12 +100,12 @@ defmodule Aoc.Days.Two do
   end
 
   @spec same_direction?(integer(), integer(), integer()) :: boolean()
-  defp same_direction?(a, b, c) do
+  def same_direction?(a, b, c) do
     (b - a) * (c - b) > 0
   end
 
   @spec valid_difference?(integer, integer) :: boolean
-  defp valid_difference?(a, b) do
+  def valid_difference?(a, b) do
     abs(a - b) in @min_difference..@max_difference
   end
 end
